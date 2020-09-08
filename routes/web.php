@@ -23,11 +23,19 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::get('/dashboard/index', 'DashboardController@index')->name('dashboard.index')->middleware('verified');
 
+//for category crud model
 Route::get('/dashboard/category', 'CategoryController@index');
 Route::get('/category/create', 'CategoryController@create');
-
 Route::post('/category', 'CategoryController@store');
 Route::get('/category/{category}/edit', 'CategoryController@edit');
-
 Route::patch('/category/{category}', 'CategoryController@update');
 Route::delete('/category/{category}', 'CategoryController@destroy');
+
+//for products crud model
+Route::get('/products/index', 'ProductsController@index');
+Route::get('/products/create', 'ProductsController@create');
+Route::post('/products', 'ProductsController@store');
+Route::get('/products/{products}/edit', 'ProductsController@edit');
+Route::patch('/products/{products}', 'ProductsController@update');
+Route::delete('/products/{products}', 'ProductsController@destroy');
+Route::get('/products/{category}', 'ProductsController@show');
