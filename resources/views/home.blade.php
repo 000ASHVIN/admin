@@ -16,6 +16,7 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <cart-item></cart-item>
             </div>
         </div>
     </div>

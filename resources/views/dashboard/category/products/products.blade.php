@@ -34,14 +34,37 @@
     <div class="row">
             <!-- USER DATA-->
             <div class="user-data m-b-40 col-12">
-                <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-account-calendar"></i>Product</h3>
+            
+                <div class="d-flex justify-content-between">
+                    <h3 class="title-3 m-b-30">
+                        <i class="zmdi zmdi-account-calendar"></i>Product</h3>
+                    <div>
+                        @if(session('success'))
+                            <span class="text-success">{{session('success')}}</span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group pl-5">
+                    <label for="category-id" class="pr-2">Category</label>
+                    <div class="rs-select2--dark rs-select2--sm rs-select2--border w-25">
+                        <select id="category-id" class="js-select2 au-select-dark form-control @error('category-id') is-invalid @enderror" name="category-id" onchange="window.location.href = '/products/'+this.value">
+                            <option value="">Select Category</option>
+                            @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->product_type}}</option>
+                            @endforeach
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                </div>
+
                 <div class="table-responsive table-data">
                     <table class="table">
                         <thead>
                             <tr>
                                 <td></td>
                                 <td>Product Name</td>
+                                <td>Category</td>
                                 <td>Product Price</td>
                                 <td>Product Image</td>
                                 <td>Product Stock</td>
@@ -62,10 +85,13 @@
                                     <span>{{$product->product_name}}</span>
                                 </td>
                                 <td>
+                                    <span>{{$product->category->product_type}}</span>
+                                </td>
+                                <td>
                                     <span>{{$product->product_price}}</span>
                                 </td>
                                 <td>
-                                    <span>{{$product->product_image}}</span>
+                                    <span><img src="/storage/{{$product->product_image}}" alt=""></span>
                                 </td>
                                 <td>
                                     <span>{{$product->product_stock}}</span>
@@ -90,10 +116,12 @@
                         </tbody>
                         @endforeach
                     </table>
+
+                    <div class="user-data__footer">
+                        <button class="">{{$products->links()}}</button>
+                    </div>
                 </div>
-                <div class="user-data__footer">
-                    <button class="au-btn au-btn-load">load more</button>
-                </div>
+                
             </div>
             <!-- END USER DATA-->
     </div>

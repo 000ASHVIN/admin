@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Carbon;
+use App\Suborders;
 
 class DashboardController extends Controller
 {
@@ -14,7 +16,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $sold = Suborders::sum('quantity');
+        // dd($sold);
+        $weeklySold = Suborders::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->sum('quantity');
+
+        $suborders = Suborders::all();
+        $amount = 0;
+        foreach($suborders as $suborder) {
+            $amount += $suborder->price * $suborder->quantity;
+        }
+        // dd($amount);
+        return view('dashboard.index', compact('sold', 'weeklySold', 'amount'));
     }
 
     /**

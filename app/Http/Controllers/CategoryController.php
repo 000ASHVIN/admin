@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         return view('dashboard.category.category', compact('categories'));
     }
 
@@ -38,7 +38,7 @@ class CategoryController extends Controller
     {
         
         $data = $request->validate([
-            'product-type' => 'required',
+            'product-type' => ['required', 'unique:categories,product_type'],
             'description' => 'required',
             'is-active' => 'required',
         ]);
@@ -89,7 +89,7 @@ class CategoryController extends Controller
     {
         // dd($category);
         $data = $request->validate([
-            'product-type' => 'required',
+            'product-type' => 'required|unique:categories,product_type',
             'description' => 'required',
             'is-active' => 'required',
         ]);

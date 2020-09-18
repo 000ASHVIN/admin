@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+// use PayPal\Exception\PayPalConnectionException;
+// use Illuminate\Support\Facades\Redirect;
+// use Illuminate\Support\Facades\Request;
 
 class Handler extends ExceptionHandler
 {
@@ -52,4 +55,15 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    // public function render(Request $request, Exception $e)
+    // {
+    //     //check the specific exception
+    //     if ($e instanceof PayPalConnectionException) {
+    //         //return with errors and with at the form data
+    //         return Redirect::back()->withErrors($e->getData())->withInput(Input::all());
+    //     }
+
+    //     return parent::render($request, $e);
+    // } 
 }

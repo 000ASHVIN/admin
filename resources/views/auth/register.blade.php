@@ -14,6 +14,7 @@
                     <div class="login-form">
                         <form method="POST" action="{{ route('register') }}" onsubmit="return validate_term();">
                             @csrf
+                            <input type="hidden" class="form-control" name="role" value="admin">
                             <div class="form-group">
                                 <label>Username</label>
                                 <input class="au-input au-input--full form-control @error('username') is-invalid @enderror" type="text" name="username" value="{{ old('username') }}" placeholder="Username">

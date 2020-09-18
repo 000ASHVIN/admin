@@ -30,7 +30,12 @@
     <link href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet">
     
     <!-- Main CSS-->
+    
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" /> -->
+
+
+
 
 </head>
 <body>
@@ -163,29 +168,29 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="/dashboard/index">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
 
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Category</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                @foreach($categories as $category)
-                                <li>
-                                    <a href="/products/{{$category->id}}">{{$category->product_type}}</a>
-                                </li>
-                                @endforeach
-                                <li>
-                                    <a href="/dashboard/category"><i class="fas fa-cog mr-1"></i>Manage</a>
-                                </li>
-                            </ul>
+                            <a class="js-arrow" href="/dashboard/category">
+                                <i class="fas fa-list-alt"></i>Category</a>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="js-arrow" href="/products/index">
+                                <i class="fas fa-product-hunt"></i>Products</a>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="js-arrow" href="/user/index">
+                                <i class="fas fa-user"></i>Users</a>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="js-arrow" href="/order/index">
+                                <i class="fas fa-user"></i>Orders</a>
                         </li>
 
                     </ul>
@@ -383,11 +388,14 @@
     <main>@yield('content')</main>
 
     <!-- Jquery JS-->
+    
     <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
     <!-- Bootstrap JS-->
     <script src="{{ asset('vendor/bootstrap-4.1/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+    
 
     <!-- Vendor JS       -->
     <script src="{{ asset('vendor/slick/slick.min.js') }}"></script>
@@ -401,6 +409,12 @@
     <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}" type="text/javascript"></script>
 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script> -->
+
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/products/productPaginationAjax.js') }}"></script>
+    <script src="{{ asset('js/orders/orderSearchPaginateAjax.js') }}"></script>
+    
 </body>
 </html>

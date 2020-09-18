@@ -13,7 +13,7 @@
                     @method('PATCH')
                     <div class="form-group ">
                         <label for="category-id">Category</label>
-                        <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                        <div class="rs-select2--dark rs-select2--sm rs-select2--border d-block w-25">
                             <select id="category-id" class="js-select2 au-select-dark form-control @error('category-id') is-invalid @enderror" name="category-id">
                                 @foreach($categories as $category)
                                 <option value="{{$category->id}}" @if($products->category_id == $category->id)
@@ -22,13 +22,12 @@
                                 @endforeach
                             </select>
                             <div class="dropDownSelect2"></div>
+                            @error('category-id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-
-                        @error('category-id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -36,6 +35,17 @@
                         <input id="product-name" class="au-input au-input--full form-control @error('product-name') is-invalid @enderror" type="text" name="product-name" value="{{ $products->product_name }}" placeholder="product-name">
 
                         @error('product-name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-discription">Product Discription</label>
+                        <input id="product-discription" class="au-input au-input--full form-control @error('product-discription') is-invalid @enderror" type="text" name="product-discription" value="{{ old('product-discription') }}" placeholder="product-discription">
+
+                        @error('product-discription')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -77,7 +87,7 @@
 
                     <div class="form-group ">
                         <label for="product-live">Product Live</label>
-                        <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                        <div class="rs-select2--dark rs-select2--sm rs-select2--border d-block w-25">
                             <select id="product-live" class="js-select2 au-select-dark form-control @error('product-live') is-invalid @enderror" name="product-live">
                                 <option value="1" @if($products->product_live == 1)
                                     selected="selected"
@@ -87,13 +97,12 @@
                                     @endif>No</option>
                             </select>
                             <div class="dropDownSelect2"></div>
+                            @error('product-live')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-
-                        @error('product-live')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -108,6 +117,7 @@
                     </div>
 
                     <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Update</button>
+                    <a href="/products/index">Back</a>
                 </form>
             </div>
             

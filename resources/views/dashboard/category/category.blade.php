@@ -34,8 +34,15 @@
     <div class="row">
             <!-- USER DATA-->
             <div class="user-data m-b-40 col-12">
-                <h3 class="title-3 m-b-30">
-                    <i class="zmdi zmdi-account-calendar"></i>Category</h3>
+                <div class="d-flex justify-content-between">
+                    <h3 class="title-3 m-b-30">
+                        <i class="zmdi zmdi-account-calendar"></i>Category</h3>
+                    <div>
+                        @if(session('success'))
+                            <span class="text-success">{{session('success')}}</span>
+                        @endif
+                    </div>
+                </div>
                 <div class="table-responsive table-data">
                     <table class="table">
                         <thead>
@@ -78,7 +85,7 @@
                     </table>
                 </div>
                 <div class="user-data__footer">
-                    <button class="au-btn au-btn-load">load more</button>
+                <button class="">{{$categories->links()}}</button>
                 </div>
             </div>
             <!-- END USER DATA-->

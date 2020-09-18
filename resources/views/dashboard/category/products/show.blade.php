@@ -17,7 +17,13 @@
                                 <li class="list-inline-item seprate">
                                     <span>/</span>
                                 </li>
-                                <li class="list-inline-item"></li>
+                                <li class="list-inline-item active">
+                                    <a href="/products/index">Product</a>
+                                </li>
+                                <li class="list-inline-item seprate">
+                                    <span>/</span>
+                                </li>
+                                <li class="list-inline-item">{{$category->product_type}}</li>
                             </ul>
                         </div>
                         <button class="au-btn au-btn-icon au-btn--green" onclick="window.location.href ='/products/create' ">
@@ -36,64 +42,26 @@
             <div class="user-data m-b-40 col-12">
                 <h3 class="title-3 m-b-30">
                     <i class="zmdi zmdi-account-calendar"></i>Product</h3>
-                <div class="table-responsive table-data">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td></td>
-                                <td>Product Name</td>
-                                <td>Product Price</td>
-                                <td>Product Image</td>
-                                <td>Product Stock</td>
-                                <td>Product Live</td>
-                                <td>Product Location</td>
-                            </tr>
-                        </thead>
-                        @foreach($products as $product)
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <label class="au-checkbox">
-                                        <input type="checkbox">
-                                        <span class="au-checkmark"></span>
-                                    </label>
-                                </td>
-                                <td>
-                                    <span>{{$product->category->product_type}}</span>
-                                </td>
-                                <td>
-                                    <span>{{$product->product_price}}</span>
-                                </td>
-                                <td>
-                                    <span>{{$product->product_image}}</span>
-                                </td>
-                                <td>
-                                    <span>{{$product->product_stock}}</span>
-                                </td>
-                                <td>
-                                    <span>{{$product->product_live}}</span>
-                                </td>
-                                <td>
-                                    <span>{{$product->product_location}}</span>
-                                </td>
-                                <td>
-                                    <a href="/products/{{$product->id}}/edit" class="btn btn-primary">Edit</a>
-                                </td>
-                                <td>
-                                    <form action="/products/{{$product->id}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                        @endforeach
-                    </table>
+                    
+                <div class="table-responsive table-data" id="products-list">
+                        @include('dashboard.category.products.paginate')
+
                 </div>
+
                 <div class="user-data__footer">
-                    <button class="au-btn au-btn-load">load more</button>
+                <button class="">
+                    <nav aria-label="Page navigation example">
+                        <ul class="productPagination pagination">
+                            <!-- <li class="page-item prev"><a class="page-link" href="/paginate/{{$category->id}}?page=0" id="prev-product"><i class="fas fa-arrow-left"></i></a></li> -->
+                            @for($i = 0; $i < $totalPage; $i++)
+                                <li class="page-item @once active @endonce"><a class="page-link" href="/paginate/{{$category->id}}?page={{$i}}">{{$i+1}}</a></li>
+                            @endfor
+                            <!-- <li class="page-item next"><a class="page-link" href="/paginate/{{$category->id}}?page=1" id="next-product"><i class="fas fa-arrow-right"></i></a></li> -->
+                        </ul>
+                    </nav>
+                </button>
                 </div>
+                
             </div>
             <!-- END USER DATA-->
     </div>

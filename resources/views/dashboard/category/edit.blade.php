@@ -35,9 +35,9 @@
 
                     <div class="form-group ">
                         <label for="is-active">Is Active</label>
-                        <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                        <div class="rs-select2--dark rs-select2--sm rs-select2--border d-block">
                             <select id="is-active" class="js-select2 au-select-dark form-control @error('is-active') is-invalid @enderror" name="is-active">
-                                <option>--</option>
+                                <option value="">--</option>
                                 <option value="1" @if($category->is_active == 1)
                                     selected="selected"
                                     @endif 
@@ -47,16 +47,16 @@
                                     @endif >No</option>
                             </select>
                             <div class="dropDownSelect2"></div>
+                            @error('is-active')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-
-                        @error('is-active')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
 
                     <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Update</button>
+                    <a href="/dashboard/category">Back</a>
                 </form>
             </div>
         </div>

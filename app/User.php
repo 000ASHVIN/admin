@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Carts;
+use \App\Orders;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -17,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'status', 'role'
     ];
 
     /**
@@ -37,4 +38,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function carts() {
+        return $this->hasOne(Carts::class);
+    }
+
+    public function orders() {
+        return $this->hasMany(Orders::class);
+    }
+
 }
